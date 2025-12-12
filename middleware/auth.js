@@ -7,20 +7,18 @@ let token;
 
 
 if (
-req.headers.authorization &&
-req.headers.authorization.startsWith('Bearer')
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
 ) {
 try {
-token = req.headers.authorization.split(' ')[1];
-const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    token = req.headers.authorization.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-
-// Attach user to req (without password)
-req.user = await User.findById(decoded.id).select('-password');
-next();
+    req.user = await User.findById(decoded.id).select('-password');
+    next();
 } catch (error) {
-console.error(error);
-res.status(401).json({ message: 'Not authorized, token failed' });
+    console.error(error);
+    res.status(401).json({ message: 'Not authorized, token failed' });
 }
 }
 
