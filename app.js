@@ -20,6 +20,17 @@ app.use('/api/auth', require('./routes/auth'));
 
 app.use('/api', router1);
 
+app.post('/updatePost', async (req, res) => {
+  try {
+    const { id, title, description } = req.body;
+    const updatedPost = await Blog.findByIdAndUpdate(id, { title, description }, { new: true });
+    res.json(updatedPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 app.get('/', (req, res) => {
 res.send('API is running');
 });
