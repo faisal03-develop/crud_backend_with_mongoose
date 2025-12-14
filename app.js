@@ -7,7 +7,7 @@ const Blog = require('./models/blog.model');
 const createPost = require('./routes/createPost');
 const postS = require('./routes/getPosts');
 const updatedPost = require('./routes/updatePost');
-// const deletePost = require('./routes/deletePost');
+const deletePost = require('./routes/deletePost');
 
 dotenv.config();
 
@@ -30,21 +30,9 @@ res.send('API is running');
 });
 
 app.use('', createPost);
-app.use('', postS)
-app.use('', updatedPost)
-
-app.delete('/deletePost/:id', async (req, res) => {
-    try {
-        const post = await Blog.findByIdAndDelete(req.params.id);
-        if (!post) {
-            return res.status(404).send('Post not found');
-        }
-        res.json(post,"Post Deleted Successfully");
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
-    }
-});
+app.use('', postS);
+app.use('', updatedPost);
+app.use('', deletePost);
 
 
 const PORT = process.env.PORT || 5000;
