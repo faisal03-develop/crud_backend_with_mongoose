@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const router1 = require('./routes/user');
+const Blog = require('./models/blog.model');
 const createPost = require('./routes/createPost');
 const postS = require('./routes/getPosts');
 
