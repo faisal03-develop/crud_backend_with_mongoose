@@ -3,7 +3,7 @@ const Blog = require('../models/blog.model');
 const updatedPost = express();
 const protect = require('../middleware/auth');
 
- updatedPost.put('/updatepost/:id', async (req, res) => {
+ updatedPost.put('/updatepost/:id',protect, async (req, res) => {
   try {
     const postId = req.params.id;
     const { title, description } = req.body;

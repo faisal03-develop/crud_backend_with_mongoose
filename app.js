@@ -23,7 +23,7 @@ connectDB();
 
 app.use('', require('./routes/auth'));
 
-app.use('/', router1);
+app.use('', router1);
 
 
 
