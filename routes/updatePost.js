@@ -17,7 +17,7 @@ const protect = require('../middleware/auth');
     const { title, description } = req.body;
     const findBlog = await Blog.findById(postId);
 
-    console.log(findBlog);
+    // console.log(findBlog);
     
    const updatedPost = await Blog.findByIdAndUpdate(postId, { title, description }, { new: true });
     res.json(updatedPost);
