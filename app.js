@@ -21,7 +21,7 @@ app.use(cors());
 
 connectDB();
 
-app.use('', protect, require('./routes/auth'));
+app.use('', require('./routes/auth'));
 
 app.use('/', router1);
 
