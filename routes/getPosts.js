@@ -3,6 +3,20 @@ const Blog = require('../models/blog.model');
 const postS = express.Router();
 
 
+postS.get('/getpost/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await Blog.findById(postId);
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+        res.json(post);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 postS.get('/getposts', async (req, res) => {
     try{
         const posts = await Blog.find();

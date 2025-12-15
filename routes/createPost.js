@@ -5,7 +5,6 @@ const protect = require('../middleware/auth');
 
 
 
-
 createPost.post('/createPost',protect , async (req, res)=>{
     try{
         const {title, description} = req.body

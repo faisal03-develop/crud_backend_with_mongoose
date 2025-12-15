@@ -19,9 +19,9 @@ app.use(cors());
 
 connectDB();
 
-app.use('/api/auth', require('./routes/auth'));
+app.use('', require('./routes/auth'));
 
-app.use('/api', router1);
+app.use('/', router1);
 
 
 
