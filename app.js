@@ -8,6 +8,8 @@ const createPost = require('./routes/createPost');
 const postS = require('./routes/getPosts');
 const updatedPost = require('./routes/updatePost');
 const deletePost = require('./routes/deletePost');
+const jwt = require('jsonwebtoken');
+const protect = require('./middleware/auth');
 
 dotenv.config();
 
@@ -19,7 +21,7 @@ app.use(cors());
 
 connectDB();
 
-app.use('', require('./routes/auth'));
+app.use('', protect, require('./routes/auth'));
 
 app.use('/', router1);
 
