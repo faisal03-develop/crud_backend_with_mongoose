@@ -7,20 +7,20 @@ const protect = require('../middleware/auth');
 
     const blog = await Blog.findById(req.params.id);
     
-    if(blog.user.toString() !== req.user._id.toString()){
-      res.status(401);
-      throw new Error('User not authorized');
-    }
-
   try {
     const postId = req.params.id;
     const { title, description } = req.body;
     const findBlog = await Blog.findById(postId);
 
     // console.log(findBlog);
-    
+    if(blog.user.toString() !== req.user._id.toString()){
+      res.status(401).json('User not authorized');
+      
+    }
+    else{
    const updatedPost = await Blog.findByIdAndUpdate(postId, { title, description }, { new: true });
     res.json(updatedPost);
+    }
     
 
   } catch (error) {
