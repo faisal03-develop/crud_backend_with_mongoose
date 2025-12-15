@@ -9,7 +9,6 @@ delet.delete('/deletepost/:id',protect, async (req, res) => {
         const post = await Blog.findById(req.params.id);
         if(post.user.toString() !== req.user._id.toString()){
             res.status(401).json('User not authorized');
-            // throw new Error('User not authorized');
           }
           else{
             await Blog.findByIdAndDelete(req.params.id);
